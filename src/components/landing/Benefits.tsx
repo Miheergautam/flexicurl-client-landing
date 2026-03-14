@@ -1,7 +1,7 @@
 type Benefit = {
   title: string;
   description: string;
-  icon: JSX.Element;
+  icon: React.ReactNode;
 };
 
 const benefits: Benefit[] = [

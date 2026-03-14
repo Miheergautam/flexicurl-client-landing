@@ -1,7 +1,7 @@
 type Feature = {
   title: string;
   description: string;
-  icon: JSX.Element;
+  icon: React.ReactNode;
 };
 
 const features: Feature[] = [
