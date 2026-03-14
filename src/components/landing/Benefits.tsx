@@ -101,17 +101,20 @@ const benefits: Benefit[] = [
 
 export default function Benefits() {
   return (
-    <section id="benefits" className="bg-white">
+    <section
+      id="benefits"
+      className="bg-white dark:bg-slate-950 transition-colors duration-300"
+    >
       <div className="max-w-7xl mx-auto px-6 py-16 sm:py-20">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div className="space-y-3 max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+            <p className="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-gray-400 transition-colors duration-300">
               Benefits
             </p>
-            <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-slate-900 dark:text-gray-100 sm:text-4xl transition-colors duration-300">
               Built to make gym owners and members happier
             </h2>
-            <p className="text-base text-slate-600">
+            <p className="text-base text-slate-600 dark:text-gray-300 transition-colors duration-300">
               Keep operations smooth, members engaged, and revenue predictable
               with Flexicurl.
             </p>
@@ -122,16 +125,16 @@ export default function Benefits() {
           {benefits.map((benefit) => (
             <div
               key={benefit.title}
-              className="rounded-2xl bg-[#f5f9ff] p-6 shadow-md shadow-[#4987d2]/10 ring-1 ring-white/60 transition hover:-translate-y-1 hover:shadow-lg hover:shadow-[#4987d2]/15"
+              className="rounded-2xl bg-[#f5f9ff] dark:bg-slate-900 p-6 shadow-md shadow-[#4987d2]/10 ring-1 ring-white/60 dark:ring-slate-800 transition-colors duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#4987d2]/15"
             >
               <div className="mb-4">{benefit.icon}</div>
-              <h3 className="text-lg font-semibold text-slate-900">
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-gray-100 transition-colors duration-300">
                 {benefit.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+              <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-gray-300 transition-colors duration-300">
                 {benefit.description}
               </p>
-              <div className="mt-4 h-px w-full bg-gradient-to-r from-transparent via-slate-100 to-transparent" />
+              <div className="mt-4 h-px w-full bg-gradient-to-r from-transparent via-slate-100 dark:via-slate-800 to-transparent transition-colors duration-300" />
             </div>
           ))}
         </div>
