@@ -132,7 +132,7 @@ const segments = [
         ].map(([x,y,lbl,op]) => (
           <g key={lbl as string}>
             <line x1={140} y1={90} x2={x as number} y2={y as number} stroke="#059669" strokeWidth="1" opacity="0.15" strokeDasharray="4 3" />
-            <circle cx={x as number} cy={y as number} r="18" fill="#059669" opacity={(op as number)*0.12} stroke="#059669" strokeWidth="1" opacity2={op as number} />
+            <circle cx={x as number} cy={y as number} r="18" fill="#059669" opacity={(op as number)*0.12} stroke="#059669" strokeWidth="1" />
             <text x={x as number} y={(y as number)+4} textAnchor="middle" fill="#059669" fontSize="9" fontWeight="bold" opacity={(op as number)*0.9}>{lbl}</text>
           </g>
         ))}
