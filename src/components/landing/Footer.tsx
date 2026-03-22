@@ -1,16 +1,16 @@
-import React from "react";
 import { Playfair_Display } from "next/font/google";
 
 const brandFont = Playfair_Display({ subsets: ["latin"], weight: ["700"] });
 
-const links = [
+const nav = [
   {
     title: "Product",
     items: [
+      { label: "For Gyms", href: "#for-who" },
+      { label: "For Members", href: "#for-who" },
+      { label: "For Communities", href: "#for-who" },
       { label: "Features", href: "#features" },
       { label: "Pricing", href: "#pricing" },
-      { label: "For Gyms", href: "#how-it-works" },
-      { label: "Benefits", href: "#benefits" },
     ],
   },
   {
@@ -19,22 +19,23 @@ const links = [
       { label: "About", href: "#about" },
       { label: "Blog", href: "#blog" },
       { label: "Careers", href: "#careers" },
+      { label: "Press", href: "#press" },
     ],
   },
   {
     title: "Support",
     items: [
-      { label: "Help Center", href: "#help" },
+      { label: "Help Centre", href: "#help" },
       { label: "Contact", href: "#contact" },
-      { label: "Privacy", href: "#privacy" },
-      { label: "Terms", href: "#terms" },
+      { label: "Privacy Policy", href: "#privacy" },
+      { label: "Terms of Service", href: "#terms" },
     ],
   },
 ];
 
 const socials = [
   {
-    label: "Twitter",
+    label: "Twitter / X",
     href: "#twitter",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
@@ -62,55 +63,72 @@ const socials = [
       </svg>
     ),
   },
+  {
+    label: "YouTube",
+    href: "#youtube",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+      </svg>
+    ),
+  },
 ];
 
-const stats = [
-  { value: "500+", label: "Gyms" },
-  { value: "50k+", label: "Members" },
-  { value: "4.9★", label: "Rating" },
+const audiencePills = [
+  { label: "For Gym Owners", color: "#4987d2", href: "#for-who" },
+  { label: "For Members", color: "#7c3aed", href: "#for-who" },
+  { label: "For Communities", color: "#059669", href: "#for-who" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[#dbe8fb] bg-white dark:bg-slate-950 dark:border-slate-800 transition-colors duration-300">
-      {/* Top band */}
-      <div className="border-b border-[#dbe8fb] dark:border-slate-800">
-        <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+    <footer className="bg-slate-950 border-t border-white/[0.06]">
+      {/* Top CTA band */}
+      <div className="border-b border-white/[0.06]">
+        <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           {/* Brand */}
           <div className="flex items-center gap-3">
-            <div className="h-8 w-8 rounded-xl bg-[#4987d2] shadow-md shadow-[#4987d2]/30 flex items-center justify-center">
+            <div className="h-8 w-8 rounded-xl bg-[#4987d2] shadow-lg shadow-[#4987d2]/30 flex items-center justify-center">
               <div className="grid grid-cols-2 gap-0.5">
                 {[0, 1, 2, 3].map((i) => (
                   <div
                     key={i}
-                    className={`h-1.5 w-1.5 rounded-[2px] ${i === 0 ? "bg-white" : "bg-white/55"}`}
+                    className={`h-1.5 w-1.5 rounded-[2px] ${i === 0 ? "bg-white" : "bg-white/50"}`}
                   />
                 ))}
               </div>
             </div>
-            <span className={`${brandFont.className} text-xl tracking-tight text-slate-900 dark:text-white`}>
+            <span className={`${brandFont.className} text-xl tracking-tight text-white`}>
               Flexi<span className="text-[#4987d2]">CURL</span>
             </span>
           </div>
 
-          {/* Stats */}
-          <div className="flex items-center gap-6">
-            {stats.map((s) => (
-              <div key={s.label} className="flex flex-col items-center">
-                <span className="text-sm font-bold text-[#4987d2]">{s.value}</span>
-                <span className="text-xs text-slate-400 dark:text-slate-600">{s.label}</span>
-              </div>
+          {/* Audience pills */}
+          <div className="flex flex-wrap gap-2">
+            {audiencePills.map((pill) => (
+              <a
+                key={pill.label}
+                href={pill.href}
+                className="rounded-full border px-3 py-1 text-xs font-semibold transition-all duration-200 hover:opacity-80"
+                style={{
+                  borderColor: `${pill.color}40`,
+                  color: pill.color,
+                  background: `${pill.color}10`,
+                }}
+              >
+                {pill.label}
+              </a>
             ))}
           </div>
 
-          {/* Social links */}
-          <div className="flex items-center gap-2">
+          {/* Social icons */}
+          <div className="flex items-center gap-1.5">
             {socials.map((s) => (
               <a
                 key={s.label}
                 href={s.href}
                 aria-label={s.label}
-                className="flex h-9 w-9 items-center justify-center rounded-xl text-slate-400 dark:text-slate-600 hover:text-[#4987d2] dark:hover:text-[#7fb0ff] hover:bg-[#ebf2fe] dark:hover:bg-slate-800 border border-transparent hover:border-[#dbe8fb] dark:hover:border-slate-700 transition-all duration-200"
+                className="flex h-9 w-9 items-center justify-center rounded-xl text-slate-500 hover:text-white hover:bg-white/8 border border-transparent hover:border-white/10 transition-all duration-200"
               >
                 {s.icon}
               </a>
@@ -119,65 +137,68 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Main footer */}
-      <div className="max-w-7xl mx-auto px-6 py-10">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-          {/* Brand tagline */}
-          <div className="space-y-4 max-w-xs">
-            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-              The modern gym management platform to run, grow, and delight your
-              members — from day one.
+      {/* Main footer grid */}
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-4">
+          {/* Brand column */}
+          <div className="space-y-5">
+            <p className="text-sm text-slate-400 leading-relaxed max-w-xs">
+              The modern platform for gym owners, fitness members, and community
+              builders — all in one place.
             </p>
-            {/* Mini fitness bar illustration */}
-            <div className="flex items-end gap-1 h-8">
-              {[30, 50, 40, 70, 55, 80, 65, 90, 75, 60].map((h, i) => (
+
+            {/* Mini bar chart — fitness motif */}
+            <div className="flex items-end gap-1 h-10">
+              {[30, 50, 40, 65, 55, 80, 70, 90, 78, 62, 88, 95].map((h, i) => (
                 <div
                   key={i}
-                  className="flex-1 rounded-sm"
+                  className="flex-1 rounded-sm transition-all"
                   style={{
                     height: `${h}%`,
-                    background: i >= 7 ? "#4987d2" : "#dbe8fb",
-                    opacity: i >= 7 ? 1 : (0.3 + i * 0.07),
+                    background:
+                      i >= 9
+                        ? "#4987d2"
+                        : `rgba(73, 135, 210, ${0.15 + i * 0.06})`,
                   }}
                 />
               ))}
             </div>
-            <p className="text-xs text-slate-400 dark:text-slate-600">Member engagement trending up 📈</p>
+            <p className="text-xs text-slate-600">
+              Member engagement trending up 📈
+            </p>
           </div>
 
           {/* Link columns */}
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
-            {links.map((section) => (
-              <div key={section.title} className="space-y-3">
-                <h4 className="text-xs font-semibold uppercase tracking-widest text-slate-400 dark:text-slate-600">
-                  {section.title}
-                </h4>
-                <ul className="space-y-2">
-                  {section.items.map((item) => (
-                    <li key={item.label}>
-                      <a
-                        href={item.href}
-                        className="text-sm text-slate-600 dark:text-slate-400 hover:text-[#4987d2] dark:hover:text-[#7fb0ff] transition-colors duration-200"
-                      >
-                        {item.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          {nav.map((section) => (
+            <div key={section.title} className="space-y-4">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-slate-500">
+                {section.title}
+              </h4>
+              <ul className="space-y-2.5">
+                {section.items.map((item) => (
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      className="text-sm text-slate-400 hover:text-white transition-colors duration-200"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 flex flex-col gap-4 border-t border-[#dbe8fb] dark:border-slate-800 pt-6 text-sm text-slate-400 dark:text-slate-600 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Flexicurl. All rights reserved.</p>
-          <div className="flex items-center gap-4">
+        <div className="mt-12 flex flex-col gap-4 border-t border-white/[0.06] pt-6 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} Flexicurl Inc. All rights reserved.</p>
+          <div className="flex items-center gap-5">
             {["Privacy", "Terms", "Contact"].map((label) => (
               <a
                 key={label}
                 href={`#${label.toLowerCase()}`}
-                className="hover:text-[#4987d2] dark:hover:text-[#7fb0ff] transition-colors duration-200"
+                className="hover:text-slate-400 transition-colors duration-200"
               >
                 {label}
               </a>
