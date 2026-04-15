@@ -1,16 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Playfair_Display } from "next/font/google";
-
-const brandFont = Playfair_Display({ subsets: ["latin"], weight: ["700"] });
+import theme from "@/theme/tokens";
 
 const journeys = [
   {
     id: "gyms",
     audience: "Gym Owners",
     tagline: "Full gym command centre",
-    color: "#4987d2",
+    color: theme.colors.gyms,
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
         <rect x="2" y="7" width="4" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.8" />
@@ -122,7 +120,7 @@ const journeys = [
     id: "members",
     audience: "Members",
     tagline: "Your AI pocket coach",
-    color: "#7c3aed",
+    color: theme.colors.members,
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
         <rect x="5" y="2" width="14" height="20" rx="3" stroke="currentColor" strokeWidth="1.8" />
@@ -228,7 +226,7 @@ const journeys = [
     id: "community",
     audience: "Communities",
     tagline: "Challenges, events & earnings",
-    color: "#059669",
+    color: theme.colors.community,
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
         <circle cx="9" cy="7" r="3" stroke="currentColor" strokeWidth="1.8" />
@@ -349,23 +347,21 @@ export default function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="relative bg-white dark:bg-slate-950 overflow-hidden transition-colors duration-300"
+      className="relative bg-page overflow-hidden transition-colors duration-300"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#4987d2_0%,_transparent_65%)] opacity-[0.03] dark:opacity-[0.07]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#5B9BD5_0%,_transparent_65%)] opacity-[0.03] dark:opacity-[0.07]" />
 
       <div className="relative max-w-7xl mx-auto px-6 py-20 sm:py-28">
         {/* Header */}
         <div className="mb-14 flex flex-col items-center text-center gap-4">
-          <span className="inline-flex items-center gap-2 rounded-full bg-[#4987d2]/10 dark:bg-[#4987d2]/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#4987d2] dark:text-[#7fb0ff]">
+          <span className="inline-flex items-center gap-2 rounded-full bg-primary-light dark:bg-primary/20 px-4 py-1.5 text-[11px] font-medium uppercase tracking-widest text-primary dark:text-primary-lighter">
             How it works
           </span>
-          <h2
-            className={`${brandFont.className} text-4xl sm:text-5xl tracking-tight text-slate-900 dark:text-white max-w-3xl`}
-          >
+          <h2 className="font-display text-4xl sm:text-5xl tracking-tight text-heading max-w-3xl">
             From signup to{" "}
-            <span className="text-[#4987d2]">results</span> in three steps
+            <span className="text-primary">results</span> in three steps
           </h2>
-          <p className="max-w-xl text-base text-slate-500 dark:text-slate-400">
+          <p className="max-w-xl text-base text-body">
             Pick your journey — each audience has its own path to success.
           </p>
         </div>
@@ -380,7 +376,7 @@ export default function HowItWorks() {
               style={
                 activeId === j.id
                   ? { background: j.color, color: "white", boxShadow: `0 4px 14px ${j.color}40` }
-                  : { background: "#f8fbff", color: "#64748b" }
+                  : { background: theme.colors.primaryPale, color: theme.colors.muted }
               }
             >
               <span style={{ color: activeId === j.id ? "white" : j.color }}>{j.icon}</span>
@@ -427,11 +423,11 @@ export default function HowItWorks() {
                     <div>
                       <p
                         className="text-sm font-semibold leading-tight"
-                        style={{ color: isActive ? j.color : "#64748b" }}
+                        style={{ color: isActive ? j.color : theme.colors.muted }}
                       >
                         {j.audience}
                       </p>
-                      <p className="text-xs text-slate-400 dark:text-slate-500 leading-tight mt-0.5">
+                      <p className="text-xs text-muted leading-tight mt-0.5">
                         {j.tagline}
                       </p>
                     </div>
@@ -505,11 +501,11 @@ export default function HowItWorks() {
                             <div className="flex-1">
                               <h3
                                 className="text-base font-semibold leading-snug mb-1.5 transition-colors duration-200"
-                                style={{ color: isStepActive ? current.color : "#0f172a" }}
+                                style={{ color: isStepActive ? current.color : theme.colors.heading }}
                               >
                                 {step.title}
                               </h3>
-                              <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+                              <p className="text-sm leading-relaxed text-body">
                                 {step.detail}
                               </p>
                             </div>
@@ -557,7 +553,7 @@ export default function HowItWorks() {
                     >
                       {step.visual(current.color)}
                     </div>
-                    <div className="p-5 bg-white dark:bg-slate-900 flex flex-col gap-3">
+                    <div className="p-5 bg-card flex flex-col gap-3">
                       <div className="flex items-center gap-3">
                         <span
                           className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-xs font-bold text-white"
@@ -572,8 +568,8 @@ export default function HowItWorks() {
                           {step.chip}
                         </span>
                       </div>
-                      <h3 className="text-base font-semibold text-slate-900 dark:text-white">{step.title}</h3>
-                      <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-400">{step.detail}</p>
+                      <h3 className="text-base font-semibold text-heading">{step.title}</h3>
+                      <p className="text-sm leading-relaxed text-body">{step.detail}</p>
                     </div>
                   </div>
                 ))}

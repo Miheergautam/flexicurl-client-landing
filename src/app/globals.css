@@ -1,25 +1,150 @@
 @config "../../tailwind.config.ts";
 @import "tailwindcss";
 
+/*
+ * ═══════════════════════════════════════════════════════════════════════
+ *  FLEXICURL DESIGN TOKENS — CSS layer
+ *
+ *  Source of truth for values:  src/theme/tokens.ts
+ *  Keep these two files in sync when changing colors / fonts / radii.
+ *
+ *  How dark mode works:
+ *    ① :root  defines light-mode values as CSS custom properties.
+ *    ② html.dark overrides the same properties with dark-mode values.
+ *    ③ @theme inline maps those runtime vars → Tailwind utility classes.
+ *    Result: `bg-page` resolves to #F4F9FE in light and #0D1B2A in dark
+ *            with zero dark: prefixes needed in components.
+ * ═══════════════════════════════════════════════════════════════════════
+ */
+
+/* ── Runtime CSS properties (light mode) ─────────────────────────────── */
 :root {
-    --background: #ffffff;
-    --foreground: #171717;
+  /* Brand blues */
+  --brand-primary:        #5B9BD5;
+  --brand-dark:           #3A7BBF;
+  --brand-light:          #EBF4FC;
+  --brand-pale:           #F4F9FE;
+  --brand-lighter:        #7DB8E8;
+
+  /* Surfaces */
+  --surface-page:         #F4F9FE;
+  --surface-card:         #FFFFFF;
+  --surface-stroke:       #D8E8F5;
+
+  /* Text */
+  --text-heading:         #1A2B3C;
+  --text-body:            #4E6277;
+  --text-muted:           #8FA5BA;
+
+  /* Semantic */
+  --semantic-success:     #22C55E;
+  --semantic-warning:     #F59E0B;
+  --semantic-danger:      #EF4444;
+  --semantic-info:        #3B82F6;
+  --semantic-purple:      #8B5CF6;
+
+  /* Audience accent colours */
+  --audience-gyms:        #5B9BD5;
+  --audience-members:     #7c3aed;
+  --audience-community:   #059669;
 }
 
-@theme inline {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
-}
-
+/* ── Dark-mode overrides ──────────────────────────────────────────────── */
 html.dark {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --surface-page:         #0D1B2A;
+  --surface-card:         #112235;
+  --surface-stroke:       #1A3550;
+  --text-heading:         #E8F1F9;
+  --text-body:            #E8F1F9;
+  --text-muted:           #5A7A99;
 }
 
+/*
+ * ── Tailwind @theme — generates utility classes from the CSS vars above ─
+ *
+ *  Colors generated:
+ *    bg-primary, text-primary, border-primary, ring-primary
+ *    bg-primary-dark / bg-primary-light / bg-primary-pale / bg-primary-lighter
+ *    bg-page, bg-card, bg-stroke
+ *    text-heading, text-body, text-muted
+ *    bg-success / text-success … etc.
+ *
+ *  Radius generated:
+ *    rounded-brand-sm (6px), rounded-brand-md (10px),
+ *    rounded-brand-lg (14px), rounded-brand-xl (20px)
+ *
+ *  Shadow generated:
+ *    shadow-card, shadow-elevated
+ *
+ *  Gradient generated:
+ *    bg-brand (the 150° brand gradient)
+ *
+ *  Fonts registered:
+ *    font-sans → Inter → Geist Variable → system-ui
+ *    font-display → Playfair Display → Georgia → serif
+ *    font-mono → Geist Mono → monospace
+ */
+@theme inline {
+  /* Brand */
+  --color-primary:          var(--brand-primary);
+  --color-primary-dark:     var(--brand-dark);
+  --color-primary-light:    var(--brand-light);
+  --color-primary-pale:     var(--brand-pale);
+  --color-primary-lighter:  var(--brand-lighter);
+
+  /* Surfaces — swap automatically on html.dark */
+  --color-page:             var(--surface-page);
+  --color-card:             var(--surface-card);
+  --color-stroke:           var(--surface-stroke);
+
+  /* Text — swap automatically on html.dark */
+  --color-heading:          var(--text-heading);
+  --color-body:             var(--text-body);
+  --color-muted:            var(--text-muted);
+
+  /* Semantic */
+  --color-success:          var(--semantic-success);
+  --color-warning:          var(--semantic-warning);
+  --color-danger:           var(--semantic-danger);
+  --color-info:             var(--semantic-info);
+  --color-purple:           var(--semantic-purple);
+
+  /* Fonts */
+  --font-sans:    var(--font-inter), var(--font-geist-sans), system-ui, sans-serif;
+  --font-display: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  --font-mono:    var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Border radius */
+  --radius-brand-sm: 6px;
+  --radius-brand-md: 10px;
+  --radius-brand-lg: 14px;
+  --radius-brand-xl: 20px;
+
+  /* Box shadows */
+  --shadow-card:     0 1px 4px rgba(91,155,213,0.08);
+  --shadow-elevated: 0 4px 16px rgba(91,155,213,0.12);
+
+  /* Brand gradient → bg-brand utility */
+  --background-image-brand: linear-gradient(150deg, #3A7BBF 0%, #5B9BD5 60%, #7DB8E8 100%);
+
+  /* Audience accent colours → bg-gyms, text-members, bg-community, etc. */
+  --color-gyms:      var(--audience-gyms);
+  --color-members:   var(--audience-members);
+  --color-community: var(--audience-community);
+
+  /* Always-dark surface tokens — used in CTA / Footer permanent-dark sections */
+  --color-dark-page:   #0D1B2A;
+  --color-dark-card:   #112235;
+  --color-dark-stroke: #1A3550;
+  --color-dark-text:   #E8F1F9;
+  --color-dark-muted:  #5A7A99;
+}
+
+/* ── Base styles ──────────────────────────────────────────────────────── */
 body {
-    background: var(--background);
-    color: var(--foreground);
-    font-family: Arial, Helvetica, sans-serif;
+  background:              var(--surface-page);
+  color:                   var(--text-body);
+  font-family:             var(--font-inter), var(--font-geist-sans), 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing:  antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

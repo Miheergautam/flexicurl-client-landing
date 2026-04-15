@@ -1,6 +1,5 @@
-import { Playfair_Display } from "next/font/google";
-
-const brandFont = Playfair_Display({ subsets: ["latin"], weight: ["700"] });
+import { Zap } from "lucide-react";
+import theme from "@/theme/tokens";
 
 const nav = [
   {
@@ -75,31 +74,24 @@ const socials = [
 ];
 
 const audiencePills = [
-  { label: "For Gym Owners", color: "#4987d2", href: "#for-who" },
-  { label: "For Members", color: "#7c3aed", href: "#for-who" },
-  { label: "For Communities", color: "#059669", href: "#for-who" },
+  { label: "For Gym Owners", color: theme.colors.gyms, href: "#for-who" },
+  { label: "For Members", color: theme.colors.members, href: "#for-who" },
+  { label: "For Communities", color: theme.colors.community, href: "#for-who" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-950 border-t border-white/[0.06]">
+    <footer className="bg-dark-page border-t border-dark-stroke">
       {/* Top CTA band */}
-      <div className="border-b border-white/[0.06]">
+      <div className="border-b border-dark-stroke">
         <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           {/* Brand */}
           <div className="flex items-center gap-3">
-            <div className="h-8 w-8 rounded-xl bg-[#4987d2] shadow-lg shadow-[#4987d2]/30 flex items-center justify-center">
-              <div className="grid grid-cols-2 gap-0.5">
-                {[0, 1, 2, 3].map((i) => (
-                  <div
-                    key={i}
-                    className={`h-1.5 w-1.5 rounded-[2px] ${i === 0 ? "bg-white" : "bg-white/50"}`}
-                  />
-                ))}
-              </div>
+            <div className="h-8 w-8 rounded-brand-md bg-primary shadow-lg shadow-primary/30 flex items-center justify-center">
+              <Zap className="h-4 w-4 text-white fill-white" />
             </div>
-            <span className={`${brandFont.className} text-xl tracking-tight text-white`}>
-              Flexi<span className="text-[#4987d2]">CURL</span>
+            <span className="font-display text-xl tracking-tight text-dark-text">
+              Flexi<span className="text-primary">CURL</span>
             </span>
           </div>
 
@@ -128,7 +120,7 @@ export default function Footer() {
                 key={s.label}
                 href={s.href}
                 aria-label={s.label}
-                className="flex h-9 w-9 items-center justify-center rounded-xl text-slate-500 hover:text-white hover:bg-white/8 border border-transparent hover:border-white/10 transition-all duration-200"
+                className="flex h-9 w-9 items-center justify-center rounded-brand-md text-dark-muted hover:text-dark-text hover:bg-white/8 border border-transparent hover:border-dark-stroke transition-all duration-200"
               >
                 {s.icon}
               </a>
@@ -142,7 +134,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-4">
           {/* Brand column */}
           <div className="space-y-5">
-            <p className="text-sm text-slate-400 leading-relaxed max-w-xs">
+            <p className="text-sm text-dark-muted leading-relaxed max-w-xs">
               The modern platform for gym owners, fitness members, and community
               builders — all in one place.
             </p>
@@ -157,13 +149,13 @@ export default function Footer() {
                     height: `${h}%`,
                     background:
                       i >= 9
-                        ? "#4987d2"
-                        : `rgba(73, 135, 210, ${0.15 + i * 0.06})`,
+                        ? theme.colors.primary
+                        : `rgba(91, 155, 213, ${0.15 + i * 0.06})`,
                   }}
                 />
               ))}
             </div>
-            <p className="text-xs text-slate-600">
+            <p className="text-xs text-dark-muted">
               Member engagement trending up 📈
             </p>
           </div>
@@ -171,7 +163,7 @@ export default function Footer() {
           {/* Link columns */}
           {nav.map((section) => (
             <div key={section.title} className="space-y-4">
-              <h4 className="text-xs font-bold uppercase tracking-widest text-slate-500">
+              <h4 className="text-[10px] font-medium uppercase tracking-widest text-dark-muted">
                 {section.title}
               </h4>
               <ul className="space-y-2.5">
@@ -179,7 +171,7 @@ export default function Footer() {
                   <li key={item.label}>
                     <a
                       href={item.href}
-                      className="text-sm text-slate-400 hover:text-white transition-colors duration-200"
+                      className="text-sm text-dark-muted hover:text-dark-text transition-colors duration-200"
                     >
                       {item.label}
                     </a>
@@ -191,14 +183,14 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 flex flex-col gap-4 border-t border-white/[0.06] pt-6 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-t border-dark-stroke pt-6 text-sm text-dark-muted sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Flexicurl Inc. All rights reserved.</p>
           <div className="flex items-center gap-5">
             {["Privacy", "Terms", "Contact"].map((label) => (
               <a
                 key={label}
                 href={`#${label.toLowerCase()}`}
-                className="hover:text-slate-400 transition-colors duration-200"
+                className="hover:text-dark-text transition-colors duration-200"
               >
                 {label}
               </a>
